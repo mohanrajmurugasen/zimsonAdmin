@@ -20,23 +20,8 @@ import Logo from "../../assets/imgs/logo.jpg";
 import { useSelector } from "react-redux";
 import Home from "../sideComponents/home";
 import { ListCopy } from "./list";
-import NewTechnology from "../sideComponents/technology/NewTechnology";
-import NewBrand from "../sideComponents/brand/NewBrand";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import NewCustomer from "../sideComponents/customer/NewCustomer";
-import NewCategory from "../sideComponents/category/NewCategory";
-import NewProduct from "../sideComponents/product/NewProduct";
-import NewSite from "../sideComponents/site/NewSite";
-import NewAppUser from "../sideComponents/appUser/NewAppUser";
-import NewAllergen from "../sideComponents/allergen/NewAllergen";
-import NewUserGroup from "../sideComponents/userGroup/NewUserGroup";
-import NewMasProductLine from "../sideComponents/masProductLine/NewMasProductLine";
-import NewMasFilmDetail from "../sideComponents/masFilmDetail/NewMasFilmDetail";
-import NewMachine from "../sideComponents/machine/NewMachine";
-import NewManagements from "../sideComponents/managements/NewManagements";
-import NewFlavourCategory from "../sideComponents/flavourCategory/NewFlavourategory";
-import NewFlavourCode from "../sideComponents/flavourCode/NewFlavourCode";
 import NewReports from "../sideComponents/reports/NewReports";
 
 function Copyright() {
@@ -164,7 +149,7 @@ export default function Dashboard() {
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
-        style={{ backgroundColor: "#0f5953", position: "fixed" }}
+        style={{ backgroundColor: "black", position: "fixed" }}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -186,7 +171,7 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            KolApp Admin Panel
+            Zimson Admin Panel
           </Typography>
           <IconButton color="inherit" onClick={handleClick}>
             <ExitToAppIcon />
@@ -232,36 +217,6 @@ export default function Dashboard() {
               <React.Fragment>
                 {sideBar === "home" ? (
                   <Home />
-                ) : sideBar === "technology" ? (
-                  <NewTechnology />
-                ) : sideBar === "customer" ? (
-                  <NewCustomer />
-                ) : sideBar === "category" ? (
-                  <NewCategory />
-                ) : sideBar === "brand" ? (
-                  <NewBrand />
-                ) : sideBar === "product" ? (
-                  <NewProduct />
-                ) : sideBar === "site" ? (
-                  <NewSite />
-                ) : sideBar === "appuser" ? (
-                  <NewAppUser />
-                ) : sideBar === "allergen" ? (
-                  <NewAllergen />
-                ) : sideBar === "usergroup" ? (
-                  <NewUserGroup />
-                ) : sideBar === "masproductline" ? (
-                  <NewMasProductLine />
-                ) : sideBar === "masfilmdetail" ? (
-                  <NewMasFilmDetail />
-                ) : sideBar === "machine" ? (
-                  <NewMachine />
-                ) : sideBar === "managements" ? (
-                  <NewManagements />
-                ) : sideBar === "flavourcategory" ? (
-                  <NewFlavourCategory />
-                ) : sideBar === "flavourcode" ? (
-                  <NewFlavourCode />
                 ) : sideBar === "reports" ? (
                   <NewReports />
                 ) : null}

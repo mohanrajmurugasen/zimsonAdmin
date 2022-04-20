@@ -10,9 +10,8 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Banner from "../../assets/imgs/login.jpeg";
+import Banner from "../../assets/imgs/login.jpg";
 import Logo from "../../assets/imgs/logo.jpg";
-import authaxios from "../interceptors/authaxios";
 
 function Copyright() {
   return (
@@ -74,16 +73,6 @@ export default function Login() {
     if (username === "reports" && password === "reports123") {
       localStorage.setItem("user", username);
       window.location.href = "/";
-    } else {
-      await authaxios
-        .post("LoginAppUsers", collect)
-        .then((res) => {
-          localStorage.setItem("user", username);
-          window.location.href = "/";
-        })
-        .catch((err) => {
-          alert("Enter valid User");
-        });
     }
   };
 
@@ -130,7 +119,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               className={classes.submit}
-              style={{ backgroundColor: "#0f5953", color: "white" }}
+              style={{ backgroundColor: "black", color: "white" }}
               onClick={submit}
             >
               Sign In

@@ -58,9 +58,7 @@ export default function ReportsTable({ search, setvals, vals }) {
 
     const fetch = async () => {
       await authaxios
-        .get(
-          `MasProductLineDetail/${masProductLine.technologyId}/${masProductLine.customerId}/${masProductLine.brandId}/${masProductLine.categoryId}/${masProductLine.productId}/0`
-        )
+        .get(`purchase`)
         .then((res) => {
           if (isMounted) {
             setvalues(res.data);
@@ -129,8 +127,7 @@ export default function ReportsTable({ search, setvals, vals }) {
   useEffect(() => {
     const dat = values.filter((country) => {
       return (
-        country.declaredWeight.toLowerCase().indexOf(search.toLowerCase()) !==
-        -1
+        country.location.toLowerCase().indexOf(search.toLowerCase()) !== -1
       );
     });
     setfilteredCountries(dat);
@@ -182,7 +179,7 @@ export default function ReportsTable({ search, setvals, vals }) {
           <TableHead>
             <TableRow>
               <TableCell align="center">Id</TableCell>
-              <TableCell align="center">Declared Weight</TableCell>
+              <TableCell align="center">Location</TableCell>
               <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
@@ -195,7 +192,7 @@ export default function ReportsTable({ search, setvals, vals }) {
                     align="center"
                     style={{ textTransform: "capitalize" }}
                   >
-                    {row.declaredWeight}
+                    {row.location}
                   </TableCell>
                   <TableCell align="center">
                     <div className="action">

@@ -1,1 +1,1 @@
-export const baseURL = "https://sahasoftlabs.co.uk/";
+export const baseURL = "http://localhost:5000/";
