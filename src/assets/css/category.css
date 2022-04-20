@@ -1,0 +1,123 @@
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+.top1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+@media screen and (max-width: 630px) {
+  .top1 {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 670px) {
+  .top {
+    display: block !important;
+  }
+}
+.entire {
+  background-color: white;
+  padding: 30px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+.action {
+  display: flex;
+  justify-content: space-evenly;
+}
+.action svg {
+  cursor: pointer;
+}
+.middle {
+  padding-bottom: 45px;
+  padding-top: 20px;
+}
+.middle p {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.middle input {
+  border: 1px solid #80808094;
+  padding: 7px 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+.middles .input {
+  border: 1px solid #80808094;
+  padding: 18px 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+}
+.deletess {
+  display: flex;
+  justify-content: space-evenly;
+}
+@media screen and (max-width: 700px) {
+  .deletess {
+    display: block;
+  }
+  .deletess button {
+    margin-bottom: 10px;
+  }
+}
+
+.tech .paginate ul {
+  list-style: none;
+  float: right;
+  display: flex;
+}
+.tech .paginate {
+  padding-bottom: 40px;
+}
+.tech .paginate ul li {
+  border: 1px solid darkgray;
+  padding: 6px 16px;
+  color: black;
+}
+.tech .paginate ul .previous {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.tech .paginate ul .next {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.tech .paginate ul li svg {
+  color: black;
+}
+.tech .paginate ul li:hover {
+  background-color: #0f5953;
+  color: white;
+}
+.tech .paginate ul .selected {
+  background-color: #0f5953;
+  color: white;
+}
+
+.filter:hover {
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+.filter {
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 12%);
+}
+
+.tabing .nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+  color: #0f5953;
+}
+.tabing .nav-link {
+  color: black;
+  font-size: 17px;
+}
+.tabing .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #0f5953 !important;
+  border: 1px solid #0f5953 !important;
+  border-bottom: white !important;
+}
