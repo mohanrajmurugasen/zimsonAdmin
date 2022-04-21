@@ -15,7 +15,6 @@ import Backdrop from "@material-ui/core/Backdrop";
 import "../../../assets/css/category.css";
 import Fade from "@material-ui/core/Fade";
 import authaxios from "../../interceptors/authaxios";
-import { useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ReportsTable({ search, setvals, vals }) {
+export default function LocationTable({ search, vals, setvals }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [modals, setmodals] = useState("");
@@ -46,23 +45,16 @@ export default function ReportsTable({ search, setvals, vals }) {
   const [rowid, setrowid] = useState(null);
   const [values, setvalues] = useState([]);
   const [name, setname] = useState("");
-
   const dispatch = useDispatch();
-
-  const masProductLine = useSelector(
-    (state) => state.addMasProductLine.masProductLine
-  );
 
   useEffect(() => {
     let isMounted = true;
 
     const fetch = async () => {
       await authaxios
-        .get(`purchase`)
+        .get("location")
         .then((res) => {
-          if (isMounted) {
-            setvalues(res.data);
-          }
+          if (isMounted) setvalues(res.data);
         })
         .catch((err) => {
           console.error(err.message);
@@ -74,7 +66,33 @@ export default function ReportsTable({ search, setvals, vals }) {
     return () => {
       isMounted = false;
     };
-  }, [masProductLine, vals]);
+  }, [vals]);
+
+  const [filteredCountries, setfilteredCountries] = useState([]);
+
+  useEffect(() => {
+    const dat = values.filter((country) => {
+      return country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+    });
+    setfilteredCountries(dat);
+  }, [search, values]);
+
+  const itemsPerPage = 20;
+  const [currentItems, setCurrentItems] = useState(null);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(filteredCountries.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(filteredCountries.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, filteredCountries]);
+
+  const handlePageClick = (event) => {
+    const newOffset =
+      (event.selected * itemsPerPage) % filteredCountries.length;
+    setItemOffset(newOffset);
+  };
 
   const handleOpen = (x) => {
     setid(x);
@@ -93,66 +111,21 @@ export default function ReportsTable({ search, setvals, vals }) {
   };
 
   const handleClose2 = () => {
-    authaxios.delete(`MasProductLines?id=${id}`).then((res) => {
-      setvals(!vals);
+    authaxios.delete(`location/${id}`).then((res) => {
       setOpen(false);
+      setvals(!vals);
     });
   };
 
-  const handleClose3 = async () => {
-    await authaxios
-      .put(`MasProductLines`, {
-        id: rowid,
-        technologyId: masProductLine.technologyId,
-        customerId: masProductLine.customerId,
-        brandId: masProductLine.brandId,
-        categoryId: masProductLine.categoryId,
-        productId: masProductLine.productId,
-        declaredWeight:
-          name.slice(-1) === "g"
-            ? `${name}G`
-            : name.slice(-1) === "G"
-            ? name
-            : `${name}G`,
+  const handleClose3 = () => {
+    authaxios
+      .put(`location/${rowid}`, {
+        name: name,
       })
       .then((res) => {
         setOpen(false);
         setvals(!vals);
-      })
-      .catch((err) => console.log(err.message));
-  };
-
-  const [filteredCountries, setfilteredCountries] = useState([]);
-
-  useEffect(() => {
-    const dat = values.filter((country) => {
-      return (
-        country.location.toLowerCase().indexOf(search.toLowerCase()) !== -1
-      );
-    });
-    setfilteredCountries(dat);
-  }, [search, values]);
-
-  // We start with an empty list of items.
-  const itemsPerPage = 20;
-  const [currentItems, setCurrentItems] = useState(null);
-  const [pageCount, setPageCount] = useState(0);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
-  const [itemOffset, setItemOffset] = useState(0);
-
-  useEffect(() => {
-    // Fetch items from another resources.
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(filteredCountries.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(filteredCountries.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, filteredCountries]);
-
-  // Invoke when user click to request another page.
-  const handlePageClick = (event) => {
-    const newOffset =
-      (event.selected * itemsPerPage) % filteredCountries.length;
-    setItemOffset(newOffset);
+      });
   };
 
   useEffect(() => {
@@ -161,7 +134,7 @@ export default function ReportsTable({ search, setvals, vals }) {
     if (isMounted) {
       dispatch(
         technologyProduct({
-          type: "productLine",
+          type: "location",
           val: currentItems,
         })
       );
@@ -192,15 +165,13 @@ export default function ReportsTable({ search, setvals, vals }) {
                     align="center"
                     style={{ textTransform: "capitalize" }}
                   >
-                    {row.location}
+                    {row.name}
                   </TableCell>
                   <TableCell align="center">
                     <div className="action">
                       <div>
                         <EditIcon
-                          onClick={() =>
-                            handleOpen1(row.id, row.declaredWeight)
-                          }
+                          onClick={() => handleOpen1(row.id, row.name)}
                           color="primary"
                         />
                       </div>
@@ -255,14 +226,14 @@ export default function ReportsTable({ search, setvals, vals }) {
                 </div>
               ) : modals === "edit" ? (
                 <div className={classes.paper}>
-                  <h2 id="transition-modal-title">Edit Declared Weight</h2>
+                  <h2 id="transition-modal-title">Edit Location</h2>
                   <div className="middle">
-                    <p>Declared Weight</p>
+                    <p>Location</p>
                     <input
                       type={"text"}
                       value={name}
                       onChange={(e) => setname(e.target.value)}
-                      placeholder="Enter Declared Weight"
+                      placeholder="Enter Location"
                     />
                   </div>
                   <div className="deletess">
@@ -270,9 +241,9 @@ export default function ReportsTable({ search, setvals, vals }) {
                       Close
                     </Button>
                     <Button
-                      onClick={() => handleClose3()}
+                      onClick={handleClose3}
                       variant="contained"
-                      style={{ backgroundColor: "#0f5953", color: "white" }}
+                      style={{ backgroundColor: "black", color: "white" }}
                     >
                       Save
                     </Button>

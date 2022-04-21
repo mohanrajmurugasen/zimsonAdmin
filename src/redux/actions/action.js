@@ -28,6 +28,20 @@ export const masProductLineProduct = (masProductLine) => {
   };
 };
 
+export const nonpurchaseProduct = (nonpurchase) => {
+  return {
+    type: ActionType.NONPURCHASE,
+    payload: nonpurchase,
+  };
+};
+
+export const serviceProduct = (service) => {
+  return {
+    type: ActionType.SERVICE,
+    payload: service,
+  };
+};
+
 export const ProductIdProduct = (ProductId) => {
   return {
     type: ActionType.PRODUCTID,

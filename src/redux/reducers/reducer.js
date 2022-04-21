@@ -56,11 +56,10 @@ export const flavourCategoryReducer = (
 
 const masProductLineState = {
   masProductLine: {
-    technologyId: 0,
-    customerId: 0,
-    brandId: 0,
-    categoryId: 0,
-    productId: 0,
+    location: "",
+    brand: "",
+    star: 0,
+    rate: "",
   },
 };
 
@@ -74,6 +73,56 @@ export const masProductLineReducer = (
         ...state,
         masProductLine: {
           ...state.masProductLine,
+          [payload.type]: payload.val,
+        },
+      };
+    default:
+      return state;
+  }
+};
+
+const nonpurchaseState = {
+  nonpurchase: {
+    location: "",
+    brand: "",
+    price: 0,
+    star: "",
+  },
+};
+
+export const nonpurchaseReducer = (
+  state = nonpurchaseState,
+  { type, payload }
+) => {
+  switch (type) {
+    case ActionType.NONPURCHASE:
+      return {
+        ...state,
+        nonpurchase: {
+          ...state.nonpurchase,
+          [payload.type]: payload.val,
+        },
+      };
+    default:
+      return state;
+  }
+};
+
+const serviceState = {
+  service: {
+    location: "",
+    receipt: "",
+    quality: "",
+  },
+};
+
+export const serviceReducer = (state = serviceState, { type, payload }) => {
+  switch (type) {
+    case ActionType.SERVICE:
+      return {
+        ...state,
+        service: {
+          ...state.service,
           [payload.type]: payload.val,
         },
       };
@@ -100,20 +149,11 @@ export const productIdReducer = (state = productIdState, { type, payload }) => {
 
 const technologyState = {
   technology: {
-    technology: [],
-    customer: [],
+    purchase: [],
+    nonpurchase: [],
+    service: [],
     brand: [],
-    category: [],
-    product: [],
-    site: [],
-    appUser: [],
-    allergen: [],
-    userGroup: [],
-    productLine: [],
-    filmDetail: [],
-    machine: [],
-    flavourCategory: [],
-    flavourCode: [],
+    location: [],
   },
 };
 

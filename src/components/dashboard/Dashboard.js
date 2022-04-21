@@ -22,7 +22,11 @@ import Home from "../sideComponents/home";
 import { ListCopy } from "./list";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import NewReports from "../sideComponents/reports/NewReports";
+import NewPurchase from "../sideComponents/purchase/NewPurchase";
+import NewNonPurchase from "../sideComponents/nonpurchase/NewNonPurchase";
+import NewService from "../sideComponents/service/NewService";
+import NewLocation from "../sideComponents/location/NewLocation";
+import NewBrand from "../sideComponents/brand/NewBrand";
 
 function Copyright() {
   return (
@@ -217,8 +221,16 @@ export default function Dashboard() {
               <React.Fragment>
                 {sideBar === "home" ? (
                   <Home />
-                ) : sideBar === "reports" ? (
-                  <NewReports />
+                ) : sideBar === "purchase" ? (
+                  <NewPurchase />
+                ) : sideBar === "nonpurchase" ? (
+                  <NewNonPurchase />
+                ) : sideBar === "service" ? (
+                  <NewService />
+                ) : sideBar === "location" ? (
+                  <NewLocation />
+                ) : sideBar === "brand" ? (
+                  <NewBrand />
                 ) : null}
               </React.Fragment>
             </Grid>

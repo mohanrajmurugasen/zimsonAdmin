@@ -4,14 +4,42 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import { useDispatch } from "react-redux";
-import { customerIdProduct, sideBarProduct } from "../../redux/actions/action";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import {
+  customerIdProduct,
+  masProductLineProduct,
+  nonpurchaseProduct,
+  serviceProduct,
+  sideBarProduct,
+} from "../../redux/actions/action";
+import Shop2Icon from "@mui/icons-material/Shop2";
+import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
+import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
+import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
+import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
 
 export const ListCopy = () => {
   const dispatch = useDispatch();
   const sideBarClick = (x) => {
     dispatch(customerIdProduct(null));
     dispatch(sideBarProduct(x));
+    dispatch(
+      serviceProduct({
+        type: "location",
+        val: "",
+      })
+    );
+    dispatch(
+      nonpurchaseProduct({
+        type: "location",
+        val: "",
+      })
+    );
+    dispatch(
+      masProductLineProduct({
+        type: "location",
+        val: "",
+      })
+    );
   };
   return (
     <div>
@@ -22,11 +50,35 @@ export const ListCopy = () => {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button onClick={() => sideBarClick("reports")}>
+        <ListItem button onClick={() => sideBarClick("purchase")}>
           <ListItemIcon>
-            <PictureAsPdfIcon />
+            <Shop2Icon />
           </ListItemIcon>
-          <ListItemText primary="Reports" />
+          <ListItemText primary="Purchase" />
+        </ListItem>
+        <ListItem button onClick={() => sideBarClick("nonpurchase")}>
+          <ListItemIcon>
+            <BrowserNotSupportedIcon />
+          </ListItemIcon>
+          <ListItemText primary="NonPurchase" />
+        </ListItem>
+        <ListItem button onClick={() => sideBarClick("service")}>
+          <ListItemIcon>
+            <MiscellaneousServicesIcon />
+          </ListItemIcon>
+          <ListItemText primary="Service" />
+        </ListItem>
+        <ListItem button onClick={() => sideBarClick("location")}>
+          <ListItemIcon>
+            <AddLocationAltIcon />
+          </ListItemIcon>
+          <ListItemText primary="Location List" />
+        </ListItem>
+        <ListItem button onClick={() => sideBarClick("brand")}>
+          <ListItemIcon>
+            <BrandingWatermarkIcon />
+          </ListItemIcon>
+          <ListItemText primary="Brand List" />
         </ListItem>
       </div>
     </div>

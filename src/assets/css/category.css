@@ -92,11 +92,11 @@
   color: black;
 }
 .tech .paginate ul li:hover {
-  background-color: #0f5953;
+  background-color: black;
   color: white;
 }
 .tech .paginate ul .selected {
-  background-color: #0f5953;
+  background-color: black;
   color: white;
 }
 
