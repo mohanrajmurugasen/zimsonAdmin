@@ -122,7 +122,7 @@ export default function NewLocation() {
               href="/getting-started/installation/"
               onClick={handleClick}
             >
-              KolAppService
+              ZimsonService
             </Link>
             <Typography color="textPrimary">Location</Typography>
           </Breadcrumbs>

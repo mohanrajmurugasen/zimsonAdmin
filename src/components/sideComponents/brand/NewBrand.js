@@ -122,7 +122,7 @@ export default function NewBrand() {
               href="/getting-started/installation/"
               onClick={handleClick}
             >
-              KolAppService
+              ZimsonService
             </Link>
             <Typography color="textPrimary">Brand</Typography>
           </Breadcrumbs>

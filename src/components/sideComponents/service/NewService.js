@@ -128,7 +128,7 @@ export default function NewService() {
               href="/getting-started/installation/"
               onClick={handleClick}
             >
-              KolAppService
+              ZimsonService
             </Link>
             <Typography color="textPrimary">Service</Typography>
           </Breadcrumbs>

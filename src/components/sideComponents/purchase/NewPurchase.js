@@ -143,7 +143,7 @@ export default function NewPurchase() {
               href="/getting-started/installation/"
               onClick={handleClick}
             >
-              KolAppService
+              ZimsonService
             </Link>
             <Typography color="textPrimary">Purchase</Typography>
           </Breadcrumbs>
