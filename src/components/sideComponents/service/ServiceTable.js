@@ -46,7 +46,8 @@ export default function ServiceTable({ search, setvals, vals }) {
     const fetch = async () => {
       await authaxios
         .get(
-          `serviceById/${masProductLine.location}/${masProductLine.receipt}/${masProductLine.quality}`
+          // `serviceById/${masProductLine.location}/${masProductLine.receipt}/${masProductLine.quality}`
+          `service`
         )
         .then((res) => {
           if (isMounted) {
@@ -70,11 +71,20 @@ export default function ServiceTable({ search, setvals, vals }) {
   useEffect(() => {
     const dat = values.filter((country) => {
       return (
-        country.location.toLowerCase().indexOf(search.toLowerCase()) !== -1
+        country.location.toLowerCase().indexOf(search.toLowerCase()) !== -1 &&
+        country.location
+          .toLowerCase()
+          .indexOf(masProductLine.location.toLowerCase()) !== -1 &&
+        country.receipt
+          .toLowerCase()
+          .indexOf(masProductLine.receipt.toLowerCase()) !== -1 &&
+        country.quality
+          .toLowerCase()
+          .indexOf(masProductLine.quality.toLowerCase()) !== -1
       );
     });
     setfilteredCountries(dat);
-  }, [search, values]);
+  }, [search, values, masProductLine]);
 
   // We start with an empty list of items.
   const itemsPerPage = 20;

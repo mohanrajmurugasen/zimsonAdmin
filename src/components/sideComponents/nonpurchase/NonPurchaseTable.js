@@ -48,7 +48,8 @@ export default function NonPurchaseTable({ search, setvals, vals }) {
     const fetch = async () => {
       await authaxios
         .get(
-          `nonpurchaseById/${masProductLine.location}/${masProductLine.brand}/${masProductLine.price}/${masProductLine.star}`
+          // `nonpurchaseById/${masProductLine.location}/${masProductLine.brand}/${masProductLine.price}/${masProductLine.star}`
+          `nonpurchase`
         )
         .then((res) => {
           if (isMounted) {
@@ -74,11 +75,17 @@ export default function NonPurchaseTable({ search, setvals, vals }) {
   useEffect(() => {
     const dat = values.filter((country) => {
       return (
-        country.location.toLowerCase().indexOf(search.toLowerCase()) !== -1
+        country.location.toLowerCase().indexOf(search.toLowerCase()) !== -1 &&
+        country.location
+          .toLowerCase()
+          .indexOf(masProductLine.location.toLowerCase()) !== -1 &&
+        country.brand
+          .toLowerCase()
+          .indexOf(masProductLine.brand.toLowerCase()) !== -1
       );
     });
     setfilteredCountries(dat);
-  }, [search, values]);
+  }, [search, values, masProductLine]);
 
   // We start with an empty list of items.
   const itemsPerPage = 20;

@@ -64,13 +64,6 @@ export default function NewPurchase() {
   const [location, setlocation] = useState([]);
   const [rate, setrate] = useState([]);
   const [brand, setbrand] = useState([]);
-  const [star] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-  ]);
   const [vals, setvals] = useState(true);
 
   const technology = useSelector(
@@ -158,8 +151,8 @@ export default function NewPurchase() {
             <Paper component="form" className={classes.root}>
               <InputBase
                 className={classes.input}
-                placeholder="Filter Location"
-                inputProps={{ "aria-label": "Filter Technology Name" }}
+                placeholder="Filter Location Name"
+                inputProps={{ "aria-label": "Filter Location Name" }}
                 value={search}
                 onChange={(e) => searchs(e)}
               />
@@ -195,7 +188,7 @@ export default function NewPurchase() {
         </div>
         <div>
           <Row>
-            <Col lg={3} md={6} sm={6} xs={6}>
+            <Col lg={4} md={4} sm={6} xs={6}>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -215,7 +208,7 @@ export default function NewPurchase() {
                 )}
               />
             </Col>
-            <Col lg={3} md={6} sm={6} xs={6}>
+            <Col lg={4} md={4} sm={6} xs={6}>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -235,27 +228,7 @@ export default function NewPurchase() {
                 )}
               />
             </Col>
-            <Col lg={3} md={6} sm={6} xs={6}>
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={star}
-                getOptionLabel={(options) => options.id}
-                onChange={(event, newValue) => {
-                  dispatch(
-                    masProductLineProduct({
-                      type: "star",
-                      val: newValue.id,
-                    })
-                  );
-                }}
-                sx={{ width: "100%", marginBottom: "10px" }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Choose Star" />
-                )}
-              />
-            </Col>
-            <Col lg={3} md={6} sm={6} xs={6}>
+            <Col lg={4} md={4} sm={6} xs={6}>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"

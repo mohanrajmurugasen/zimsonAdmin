@@ -1,7 +1,7 @@
 import { ActionType } from "../contants/actionType";
 
 const sideBarState = {
-  sideBar: "home",
+  sideBar: "purchase",
 };
 
 export const sideBarReducer = (state = sideBarState, { type, payload }) => {

@@ -143,8 +143,8 @@ export default function NewService() {
             <Paper component="form" className={classes.root}>
               <InputBase
                 className={classes.input}
-                placeholder="Filter Location"
-                inputProps={{ "aria-label": "Filter Technology Name" }}
+                placeholder="Filter Location Name"
+                inputProps={{ "aria-label": "Filter Location Name" }}
                 value={search}
                 onChange={(e) => searchs(e)}
               />

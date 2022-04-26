@@ -62,15 +62,7 @@ function handleClick(event) {
 export default function NewNonPurchase() {
   const classes = useStyles();
   const [location, setlocation] = useState([]);
-  const [price, setprice] = useState([]);
   const [brand, setbrand] = useState([]);
-  const [star] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-  ]);
   const [vals, setvals] = useState(true);
 
   const technology = useSelector(
@@ -101,14 +93,6 @@ export default function NewNonPurchase() {
       .then((res) => {
         if (isMounted) {
           setlocation(res.data);
-        }
-      })
-      .catch((err) => console.error(err.message));
-    authaxios
-      .get("price")
-      .then((res) => {
-        if (isMounted) {
-          setprice(res.data);
         }
       })
       .catch((err) => console.error(err.message));
@@ -158,8 +142,8 @@ export default function NewNonPurchase() {
             <Paper component="form" className={classes.root}>
               <InputBase
                 className={classes.input}
-                placeholder="Filter Location"
-                inputProps={{ "aria-label": "Filter Technology Name" }}
+                placeholder="Filter Location Name"
+                inputProps={{ "aria-label": "Filter Location Name" }}
                 value={search}
                 onChange={(e) => searchs(e)}
               />
@@ -195,7 +179,7 @@ export default function NewNonPurchase() {
         </div>
         <div>
           <Row>
-            <Col lg={3} md={6} sm={6} xs={6}>
+            <Col lg={6} md={6} sm={6} xs={6}>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -215,7 +199,7 @@ export default function NewNonPurchase() {
                 )}
               />
             </Col>
-            <Col lg={3} md={6} sm={6} xs={6}>
+            <Col lg={6} md={6} sm={6} xs={6}>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -232,46 +216,6 @@ export default function NewNonPurchase() {
                 sx={{ width: "100%", marginBottom: "10px" }}
                 renderInput={(params) => (
                   <TextField {...params} label="Choose Brand" />
-                )}
-              />
-            </Col>
-            <Col lg={3} md={6} sm={6} xs={6}>
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={price}
-                getOptionLabel={(options) => options.val}
-                onChange={(event, newValue) => {
-                  dispatch(
-                    nonpurchaseProduct({
-                      type: "price",
-                      val: newValue.val,
-                    })
-                  );
-                }}
-                sx={{ width: "100%", marginBottom: "10px" }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Choose Price" />
-                )}
-              />
-            </Col>
-            <Col lg={3} md={6} sm={6} xs={6}>
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={star}
-                getOptionLabel={(options) => options.id}
-                onChange={(event, newValue) => {
-                  dispatch(
-                    nonpurchaseProduct({
-                      type: "star",
-                      val: newValue.id,
-                    })
-                  );
-                }}
-                sx={{ width: "100%", marginBottom: "10px" }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Choose star" />
                 )}
               />
             </Col>
