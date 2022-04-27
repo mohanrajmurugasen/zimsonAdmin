@@ -150,7 +150,7 @@ export default function NonPurchaseTable({ search, setvals, vals }) {
                     align="center"
                     style={{ textTransform: "capitalize" }}
                   >
-                    {row.user}
+                    {row.email}
                   </TableCell>
                   <TableCell
                     align="center"
