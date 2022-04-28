@@ -73,6 +73,8 @@ export default function Login() {
     if (username === "reports" && password === "reports123") {
       localStorage.setItem("user", username);
       window.location.href = "/";
+    } else {
+      alert("Username and Password Incorrect");
     }
   };
 
